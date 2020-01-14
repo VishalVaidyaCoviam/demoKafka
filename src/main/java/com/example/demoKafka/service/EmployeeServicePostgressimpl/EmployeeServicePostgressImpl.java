@@ -14,7 +14,7 @@ public class EmployeeServicePostgressImpl {
     @Autowired
     RepositoryPostgress repositoryPostgress;
 
-    @KafkaListener(topics = "test")
+    @KafkaListener(topics = "test",groupId = "Group")
     public void consumer(Employee employee) throws IOException
     {
         repositoryPostgress.save(employee);
