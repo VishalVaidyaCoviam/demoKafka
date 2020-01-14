@@ -14,11 +14,12 @@ public class KafkaSerializerImpl implements KafkaSerializer {
     public void configure(Map<String, ?> map, boolean b) {
     }
     @Override
-    public byte[] serialize(String arg0, Employee arg1) {
-        byte[] retVal = null;
+    public String serialize(String arg0, Employee arg1) {
+//        byte[] retVal = null;
+        String retVal = null;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            retVal = objectMapper.writeValueAsString(arg1).getBytes();
+            retVal = objectMapper.writeValueAsString(arg1);
         } catch (Exception e) {
             e.printStackTrace();
         }

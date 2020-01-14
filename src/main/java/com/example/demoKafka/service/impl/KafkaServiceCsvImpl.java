@@ -20,7 +20,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
     private static final String TOPIC = "test";
 
     @Autowired
-    private KafkaTemplate<String,byte[]> kafkaTemplate;
+    private KafkaTemplate<String,String> kafkaTemplate;
     @Autowired
     KafkaSerializer kafkaSerializer;
 
@@ -38,7 +38,8 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
             Date date = new Date(details.get(2));
             emp.setDateOfBirth(date);
             emp.setExperience(details.get(3));
-            this.kafkaTemplate.send(TOPIC,kafkaSerializer.serialize(TOPIC,emp))
+//            System.out.println(kafkaSerializer.serialize(TOPIC,emp));
+            this.kafkaTemplate.send(TOPIC,kafkaSerializer.serialize(TOPIC,emp));
 
         }
     }

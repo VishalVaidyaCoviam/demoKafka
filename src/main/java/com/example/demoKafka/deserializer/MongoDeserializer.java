@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface MongoDeserializer extends Closeable {
     void configoure(Map<String,?> var1, boolean var2);
-    EmployeeMongo deserialize(byte[] var2);
+    EmployeeMongo deserialize(String var2);
     void close();
 }
