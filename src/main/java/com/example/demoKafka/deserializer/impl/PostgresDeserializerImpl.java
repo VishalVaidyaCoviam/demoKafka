@@ -3,9 +3,10 @@ package com.example.demoKafka.deserializer.impl;
 import com.example.demoKafka.deserializer.PostgresDeserializer;
 import com.example.demoKafka.entity.Employee;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
-
+@Service
 public class PostgresDeserializerImpl implements PostgresDeserializer {
 
     @Override
@@ -14,7 +15,7 @@ public class PostgresDeserializerImpl implements PostgresDeserializer {
     }
 
     @Override
-    public Employee deserialize( byte[] var2) {
+    public Employee deserialize( String var2) {
         ObjectMapper mapper = new ObjectMapper();
         Employee employee = null;
         try {

@@ -5,5 +5,5 @@ import com.example.demoKafka.entity.EmployeeMongo;
 
 public interface EmployeeServiceMongoDB {
 
-    public void kafkaToMongo(EmployeeMongo employee);
+    public void kafkaToMongo(String var);
 }

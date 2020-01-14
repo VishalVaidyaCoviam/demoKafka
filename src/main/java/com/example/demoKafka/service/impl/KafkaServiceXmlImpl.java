@@ -26,7 +26,7 @@ public class KafkaServiceXmlImpl implements KafkaServiceXml {
     private static final String TOPIC = "test";
 
     @Autowired
-    private KafkaTemplate<String,byte[]> kafkaTemplate;
+    private KafkaTemplate<String,String> kafkaTemplate;
     @Autowired
     KafkaSerializer kafkaSerializer;
 
@@ -63,8 +63,9 @@ public class KafkaServiceXmlImpl implements KafkaServiceXml {
                 emp.setLastName(lastname);
                 emp.setExperience(experience);
                 emp.setDateOfBirth(new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth));
-
+//                System.out.println(kafkaSerializer.serialize(TOPIC,emp));
                 this.kafkaTemplate.send(TOPIC,kafkaSerializer.serialize(TOPIC,emp));
+
 
             }
         }
