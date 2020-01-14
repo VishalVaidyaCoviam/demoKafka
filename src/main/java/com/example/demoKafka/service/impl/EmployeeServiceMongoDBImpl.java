@@ -1,6 +1,7 @@
 package com.example.demoKafka.service.impl;
 
-import com.example.demoKafka.entity.Employee;
+
+import com.example.demoKafka.deserializer.MongoDeserializer;
 import com.example.demoKafka.entity.EmployeeMongo;
 import com.example.demoKafka.repository.RepositoryMongoDB;
 import com.example.demoKafka.service.EmployeeServiceMongoDB;
@@ -14,8 +15,14 @@ public class EmployeeServiceMongoDBImpl implements EmployeeServiceMongoDB {
     @Autowired
     RepositoryMongoDB repositoryMongoDB;
 
-    @KafkaListener(topics = "test",groupId = "Group")
-    public void kafkaToMongo(EmployeeMongo employee){
-        repositoryMongoDB.insert(employee);
+
+    @Autowired
+    MongoDeserializer mongoDeserializer;
+
+    @KafkaListener(topics = "test",groupId = "group")
+    public void kafkaToMongo(byte[] var){
+
+        EmployeeMongo employeeMongo = mongoDeserializer.deserialize(var);
+        repositoryMongoDB.insert(employeeMongo);
     }
 }
