@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+
 public class Employee implements Serializable {
     @Id
     private String firstName;

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class ReadJson {
@@ -24,11 +26,12 @@ public class ReadJson {
 //        this.kafkaTemplate.send(TOPIC,employee);
 //    }
 
-    public void readJsonFile() throws IOException, ParseException, java.text.ParseException{
+    public void readJsonFile() throws IOException, ParseException, java.text.ParseException {
         JSONParser parser=new JSONParser();
-        JSONArray array = (JSONArray) parser.parse(new FileReader("/Users/abhishekkumar/Desktop/demoKafka/src/employee.json"));
 
-        for (Object o : array) {
+        JSONArray jsonArray= (JSONArray) parser.parse(new FileReader("/Users/vaidyavishal/Downloads/demoKafka/src/employee.json"));
+
+        for (Object o : jsonArray) {
             JSONObject employee = (JSONObject) o;
 
             String firstname = (String) employee.get("firstName");
@@ -37,14 +40,16 @@ public class ReadJson {
 
             String dateOfBirth = (String) employee.get("dateOfBirth");
 
-            String experience = (String) employee.get("experience");
+            Long experience = (Long) employee.get("experience");
+//            employee.get("experience");
 
             Employee emp = new Employee();
             emp.setFirstName(firstname);
             emp.setLastName(lastname);
-            emp.setExperience(experience);
+            emp.setExperience(experience.toString());
             emp.setDateOfBirth(new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth));
-
+            System.out.println(emp);
+            System.out.println(emp.getFirstName());
             this.kafkaTemplate.send(TOPIC, emp);
 
         }

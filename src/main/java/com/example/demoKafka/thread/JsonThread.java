@@ -1,17 +1,17 @@
 package com.example.demoKafka.thread;
 
 import com.example.demoKafka.service.ReadJson;
+
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 @Component
 public class JsonThread extends Thread {
     @Autowired
     ReadJson readJson;
-
     public void run(){
         try {
             readJson.readJsonFile();
@@ -19,7 +19,7 @@ public class JsonThread extends Thread {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (org.json.simple.parser.ParseException e) {
+        } catch (java.text.ParseException e) {
             e.printStackTrace();
         }
     }

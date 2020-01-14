@@ -32,7 +32,7 @@ public class KafkaServiceXmlImpl implements KafkaServiceXml {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
-        Document document = builder.parse(new File("/Users/abhishekkumar/Desktop/demoKafka/src/employee.xml"));
+        Document document = builder.parse(new File("/Users/vaidyavishal/Downloads/demoKafka/src/employee.xml"));
 
         NodeList nodeList = document.getDocumentElement().getChildNodes();
 
@@ -60,7 +60,7 @@ public class KafkaServiceXmlImpl implements KafkaServiceXml {
                 emp.setLastName(lastname);
                 emp.setExperience(experience);
                 emp.setDateOfBirth(new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth));
-
+                System.out.println(emp.getFirstName());
                 this.kafkaTemplate.send(TOPIC,emp);
 
             }

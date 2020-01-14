@@ -24,7 +24,8 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
     public void read() throws IOException {
         String line;
         List<String> details =null;
-        BufferedReader br = new BufferedReader(new FileReader("/Users/abhishekkumar/Desktop/demoKafka/src/employee.csv"));
+
+        BufferedReader br = new BufferedReader(new FileReader("/Users/vaidyavishal/Downloads/demoKafka/src/employee.csv"));
         while((line=br.readLine())!=null)
         {
             details = Arrays.asList(line.split(","));
@@ -34,7 +35,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
             Date date = new Date(details.get(2));
             emp.setDateOfBirth(date);
             emp.setExperience(details.get(3));
-
+            System.out.println(emp.getFirstName());
             this.kafkaTemplate.send(TOPIC,emp);
 
         }

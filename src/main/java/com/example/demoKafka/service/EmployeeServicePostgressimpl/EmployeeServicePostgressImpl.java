@@ -15,11 +15,13 @@ public class EmployeeServicePostgressImpl {
     @Autowired
     RepositoryPostgres repositoryPostgres;
 
+
     @Autowired
     PostgresDeserializer postgresDeserializer;
 
     @KafkaListener(topics = "test",groupId = "group")
     public void consumer(byte[] emp) throws IOException
+
     {
         Employee employee = postgresDeserializer.deserialize(emp);
         repositoryPostgres.save(employee);
