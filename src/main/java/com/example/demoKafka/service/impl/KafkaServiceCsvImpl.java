@@ -4,6 +4,7 @@ import com.example.demoKafka.entity.Employee;
 import com.example.demoKafka.service.KafkaServiceCsv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class KafkaServiceCsvImpl implements KafkaServiceCsv {
 
     private static final String TOPIC = "test";
@@ -22,7 +24,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
     public void read() throws IOException {
         String line;
         List<String> details =null;
-        BufferedReader br = new BufferedReader(new FileReader("/Users/vaidyavishal/IdeaProjects/MyControllerDatabase/src/employee.csv"));
+        BufferedReader br = new BufferedReader(new FileReader("/Users/vaidyavishal/Downloads/demoKafka/src/employee.csv"));
         while((line=br.readLine())!=null)
         {
             details = Arrays.asList(line.split(","));
@@ -32,7 +34,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
             Date date = new Date(details.get(2));
             emp.setDateOfBirth(date);
             emp.setExperience(details.get(3));
-
+            System.out.println(emp.getFirstName());
             this.kafkaTemplate.send(TOPIC,emp);
 
         }

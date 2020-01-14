@@ -1,14 +1,12 @@
 package com.example.demoKafka.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import java.util.Date;
 
-@Entity
-public class Employee {
+@Document(value = "employee")
+public class EmployeeMongo {
     @Id
     private String firstName;
     private String lastName;
