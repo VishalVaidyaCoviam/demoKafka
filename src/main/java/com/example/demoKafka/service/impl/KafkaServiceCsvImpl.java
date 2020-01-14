@@ -1,6 +1,7 @@
 package com.example.demoKafka.service.impl;
 
 import com.example.demoKafka.entity.Employee;
+import com.example.demoKafka.service.KafkaSerializer;
 import com.example.demoKafka.service.KafkaServiceCsv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -17,7 +18,9 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
     private static final String TOPIC = "test";
 
     @Autowired
-    private KafkaTemplate<String,Employee> kafkaTemplate;
+    private KafkaTemplate<String,byte[]> kafkaTemplate;
+    @Autowired
+    KafkaSerializer kafkaSerializer;
 
     public void read() throws IOException {
         String line;
@@ -33,7 +36,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
             emp.setDateOfBirth(date);
             emp.setExperience(details.get(3));
 
-            this.kafkaTemplate.send(TOPIC,emp);
+            this.kafkaTemplate.send(TOPIC,kafkaSerializer.serialize(TOPIC,emp));
 
         }
     }
