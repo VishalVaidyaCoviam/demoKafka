@@ -1,8 +1,14 @@
-package com.example.demoKafka.dto;
+package com.example.demoKafka.entity;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-public class EmployeeDto {
+@Document(value = "employee")
+public class EmployeeMongo {
+
+    @Id
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
@@ -39,7 +45,4 @@ public class EmployeeDto {
     public void setExperience(String experience) {
         this.experience = experience;
     }
-
-
-
 }

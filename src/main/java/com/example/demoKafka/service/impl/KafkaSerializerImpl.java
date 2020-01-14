@@ -10,6 +10,7 @@ import java.util.Map;
 @Service
 public class KafkaSerializerImpl implements KafkaSerializer {
     @Override
+
     public void configure(Map<String, ?> map, boolean b) {
     }
     @Override
@@ -24,5 +25,6 @@ public class KafkaSerializerImpl implements KafkaSerializer {
         return retVal;
     }
     @Override public void close() {
+
     }
 }
