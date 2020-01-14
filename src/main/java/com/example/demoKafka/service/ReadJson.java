@@ -28,6 +28,7 @@ public class ReadJson {
 
     public void readJsonFile() throws IOException, ParseException, java.text.ParseException {
         JSONParser parser=new JSONParser();
+
         JSONArray jsonArray= (JSONArray) parser.parse(new FileReader("/Users/vaidyavishal/Downloads/demoKafka/src/employee.json"));
 
         for (Object o : jsonArray) {

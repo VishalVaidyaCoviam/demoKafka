@@ -7,6 +7,7 @@ import java.util.Date;
 
 @Document(value = "employee")
 public class EmployeeMongo {
+
     @Id
     private String firstName;
     private String lastName;

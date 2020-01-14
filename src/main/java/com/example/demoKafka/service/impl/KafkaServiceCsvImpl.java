@@ -24,6 +24,7 @@ public class KafkaServiceCsvImpl implements KafkaServiceCsv {
     public void read() throws IOException {
         String line;
         List<String> details =null;
+
         BufferedReader br = new BufferedReader(new FileReader("/Users/vaidyavishal/Downloads/demoKafka/src/employee.csv"));
         while((line=br.readLine())!=null)
         {

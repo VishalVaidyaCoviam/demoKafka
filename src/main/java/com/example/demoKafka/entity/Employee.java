@@ -5,10 +5,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Employee {
+
+public class Employee implements Serializable {
     @Id
     private String firstName;
     private String lastName;
