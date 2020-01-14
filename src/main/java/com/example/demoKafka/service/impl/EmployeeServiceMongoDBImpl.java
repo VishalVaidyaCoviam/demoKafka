@@ -22,10 +22,14 @@ public class EmployeeServiceMongoDBImpl implements EmployeeServiceMongoDB {
     @Autowired
     MongoDeserializer mongoDeserializer;
 
+    private static int counter=0;
+    
     @KafkaListener(topics = "test",groupId = "group")
     public void kafkaToMongo(byte[] var){
-
+        if(counter<150){
         EmployeeMongo employeeMongo = mongoDeserializer.deserialize(var);
         repositoryMongoDB.insert(employeeMongo);
+        counter++;
+        }
     }
 }
