@@ -17,6 +17,7 @@ public class Employee implements Serializable {
     private Date dateOfBirth;
     private String experience;
 
+
     public String getFirstName() {
         return firstName;
     }
@@ -47,5 +48,15 @@ public class Employee implements Serializable {
 
     public void setExperience(String experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", experience='" + experience + '\'' +
+                '}';
     }
 }

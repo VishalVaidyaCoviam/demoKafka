@@ -10,24 +10,21 @@ import java.util.Map;
 @Service
 public class KafkaSerializerImpl implements KafkaSerializer {
     @Override
-    public void configure(Map<String, ?> var1, boolean var2) {
 
+    public void configure(Map<String, ?> map, boolean b) {
     }
-
     @Override
-    public byte[] serialize(String var1, Employee var2) {
+    public byte[] serialize(String arg0, Employee arg1) {
         byte[] retVal = null;
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            retVal = objectMapper.writeValueAsString(var2).getBytes();
+            retVal = objectMapper.writeValueAsString(arg1).getBytes();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return retVal;
     }
-
-    @Override
-    public void close() {
+    @Override public void close() {
 
     }
 }
