@@ -1,7 +1,8 @@
 package com.example.demoKafka.service.EmployeeServicePostgressimpl;
 
+import com.example.demoKafka.deserializer.PostgresDeserializer;
 import com.example.demoKafka.entity.Employee;
-import com.example.demoKafka.repository.RepositoryPostgress;
+import com.example.demoKafka.repository.RepositoryPostgres;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -12,12 +13,16 @@ import java.io.IOException;
 public class EmployeeServicePostgressImpl {
 
     @Autowired
-    RepositoryPostgress repositoryPostgress;
+    RepositoryPostgres repositoryPostgres;
 
-    @KafkaListener(topics = "test")
-    public void consumer(Employee employee) throws IOException
+    @Autowired
+    PostgresDeserializer postgresDeserializer;
+
+    @KafkaListener(topics = "test",groupId = "group")
+    public void consumer(byte[] emp) throws IOException
     {
-        repositoryPostgress.save(employee);
+        Employee employee = postgresDeserializer.deserialize(emp);
+        repositoryPostgres.save(employee);
     }
 
 }

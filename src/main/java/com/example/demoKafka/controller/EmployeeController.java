@@ -17,16 +17,16 @@ public class EmployeeController {
         csvThread.start();
         jsonThread.start();
         xmlThread.start();
-//        csvThread.join();
-//        jsonThread.join();
-//        xmlThread.join();
-
-        MongoThread mongoThread = new MongoThread();
-        PostgresThread postgresThread = new PostgresThread();
-        mongoThread.start();
-        postgresThread.start();
-        mongoThread.join();
-        postgresThread.join();
+        csvThread.join();
+        jsonThread.join();
+        xmlThread.join();
+//
+//        MongoThread mongoThread = new MongoThread();
+//        PostgresThread postgresThread = new PostgresThread();
+//        mongoThread.start();
+//        postgresThread.start();
+//        mongoThread.join();
+//        postgresThread.join();
     }
 
 }

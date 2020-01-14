@@ -26,7 +26,7 @@ public class ReadJson {
 
     public void readJsonFile() throws IOException, ParseException, java.text.ParseException{
         JSONParser parser=new JSONParser();
-        JSONArray array = (JSONArray) parser.parse(new FileReader("/Users/vaidyavishal/IdeaProjects/MyControllerDatabase/src/MyController/employee.json"));
+        JSONArray array = (JSONArray) parser.parse(new FileReader("/Users/abhishekkumar/Desktop/demoKafka/src/employee.json"));
 
         for (Object o : array) {
             JSONObject employee = (JSONObject) o;

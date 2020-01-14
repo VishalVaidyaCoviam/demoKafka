@@ -4,6 +4,7 @@ import com.example.demoKafka.entity.Employee;
 import com.example.demoKafka.service.KafkaServiceXml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+@Service
 public class KafkaServiceXmlImpl implements KafkaServiceXml {
 
     private static final String TOPIC = "test";
@@ -30,7 +32,7 @@ public class KafkaServiceXmlImpl implements KafkaServiceXml {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
 
-        Document document = builder.parse(new File("/Users/raghavagarwal/IdeaProjects/EmployeeFile/src/com/training/xmlreadwrite/employee.xml"));
+        Document document = builder.parse(new File("/Users/abhishekkumar/Desktop/demoKafka/src/employee.xml"));
 
         NodeList nodeList = document.getDocumentElement().getChildNodes();
 
